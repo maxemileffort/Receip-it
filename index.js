@@ -29,7 +29,7 @@ $('#btn-back').on('click', function (event){
 $('#btn-go').on('click', function (event){
     event.preventDefault();
     //add functionality that parses text from image here
-    console.log('clicked');
+    $("#insert-results").html(`<p>Processing...</p>`);
     //Snippet from https://ocr.space/ocrapi
     //Prepare form data
     var formData = new FormData();
@@ -38,7 +38,6 @@ $('#btn-go').on('click', function (event){
     formData.append("language", "eng");
     formData.append("apikey", "3434f8d79088957");
     formData.append("isOverlayRequired", true);
-    console.log('made it through form data')
     //Send OCR Parsing request asynchronously
     jQuery.ajax({
         url: 'https://api.ocr.space/parse/image',
@@ -50,7 +49,6 @@ $('#btn-go').on('click', function (event){
         type: 'POST',
         success: function (ocrParsedResult) {
             //Get the parsed results, exit code and error message and details
-            console.log(ocrParsedResult);
             var parsedResults = ocrParsedResult["ParsedResults"];
             var ocrExitCode = ocrParsedResult["OCRExitCode"];
             var isErroredOnProcessing = ocrParsedResult["IsErroredOnProcessing"];
@@ -58,9 +56,7 @@ $('#btn-go').on('click', function (event){
             var errorDetails = ocrParsedResult["ErrorDetails"];
             var processingTimeInMilliseconds = ocrParsedResult["ProcessingTimeInMilliseconds"];
             //If we have got parsed results, then loop over the results to do something
-            console.log(parsedResults);
             if (parsedResults != null) {
-                console.log('checked parsed results')
                 //Loop through the parsed results
                 $.each(parsedResults, function (index, value) {
                     var exitCode = value["FileParseExitCode"];
@@ -95,7 +91,6 @@ $('#btn-go').on('click', function (event){
     $("#insert-results").html(`<img src='${userUrl}' alt="user's image"><p>${pageText}</p>`)
     $("#preview").addClass('hidden');
     $("#results").removeClass('hidden');
-    console.log('finished');
     });
     }
     }
