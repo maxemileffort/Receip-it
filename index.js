@@ -4,7 +4,7 @@ let userUrl = '';
 let fileToUpload = '';
 
 function renderPreview (x) {
-    $('#insert').html(`<img src='${x}' alt="user's image">`);
+    $('#insert-preview').html(`<img src='${x}' alt="user's image">`);
     $('#preview').removeClass('hidden');
 }
 
@@ -33,7 +33,7 @@ $('#btn-go').on('click', function (event){
     //Snippet from https://ocr.space/ocrapi
     //Prepare form data
     var formData = new FormData();
-    formData.append("file", fileToUpload);
+    //formData.append("file", fileToUpload);
     formData.append("url", userUrl);
     formData.append("language", "eng");
     formData.append("apikey", "3434f8d79088957");
@@ -50,7 +50,7 @@ $('#btn-go').on('click', function (event){
         type: 'POST',
         success: function (ocrParsedResult) {
             //Get the parsed results, exit code and error message and details
-            console.log('made it to success');
+            console.log(ocrParsedResult);
             var parsedResults = ocrParsedResult["ParsedResults"];
             var ocrExitCode = ocrParsedResult["OCRExitCode"];
             var isErroredOnProcessing = ocrParsedResult["IsErroredOnProcessing"];
@@ -58,6 +58,7 @@ $('#btn-go').on('click', function (event){
             var errorDetails = ocrParsedResult["ErrorDetails"];
             var processingTimeInMilliseconds = ocrParsedResult["ProcessingTimeInMilliseconds"];
             //If we have got parsed results, then loop over the results to do something
+            console.log(parsedResults);
             if (parsedResults != null) {
                 console.log('checked parsed results')
                 //Loop through the parsed results
@@ -82,15 +83,16 @@ $('#btn-go').on('click', function (event){
                             break;
                     }
 
-                    $.each(textOverlay["Lines"], function (index, value) {
-    // ..........................
-    // ..........................
-    // ..........................
-    // LOOP THROUGH THE LINES AND GET WORDS TO DISPLAY ON TOP OF THE IMAGE AS OVERLAY
-    // ..........................
-    // ..........................
-    // ..........................
-    });
+    //                 $.each(textOverlay["Lines"], function (index, value) {
+    // // ..........................
+    // // ..........................
+    // // ..........................
+    // // LOOP THROUGH THE LINES AND GET WORDS TO DISPLAY ON TOP OF THE IMAGE AS OVERLAY
+    // // ..........................
+    // // ..........................
+    // // ..........................
+    // });
+    $("#insert-results").html(`<img src='${userUrl}' alt="user's image"><p>${pageText}</p>`)
     $("#preview").addClass('hidden');
     $("#results").removeClass('hidden');
     console.log('finished');
@@ -104,6 +106,6 @@ $("#reset").on("click", function (event){
     $("#preview").addClass('hidden');
     $("#results").addClass('hidden');
     $("#url-input").removeClass("hidden");
+    $('#user-input').val('');
 })
-
 
