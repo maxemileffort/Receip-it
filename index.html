@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>'Ceipt to Sheet</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <header role="banner"></header>
+    <section id="url-input" role="region">
+        <form>
+            <label for="image-url">Type in the url and hit preview to see the image we will be analyzing
+                <input id="user-input" type="text" name="image-url" placeholder="Enter URL">
+            </label>
+            <button id="btn-preview">Preview</button>
+        </form>
+
+    </section>
+    <section id="preview" class="hidden" role="region">
+        <div id="insert"></div>
+        <div>
+            <button id="btn-back">Back</button>
+            <button id="btn-go">Go!</button>
+        </div>
+    </section>
+    <section id="results" class="hidden" role="region">
+        <button id="reset">Do over</button>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+        </script>
+    <script src="index.js"></script>
+</body>
+
+</html>
