@@ -1,4 +1,5 @@
 // receipt image: https://expressexpense.com/images/sample-gas-receipt.jpg
+// receipt image 2 : https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrjxKakkzNaFmCyk9UOasjJskivfQI9k5BZ-tRPoknCvp6w7ZTvA
 
 let userUrl = '';
 let fileToUpload = '';
@@ -88,6 +89,7 @@ $('#btn-go').on('click', function (event){
     // // ..........................
     // // ..........................
     // });
+    console.log(pageText);
     $("#insert-results").html(`<img src='${userUrl}' alt="user's image"><p>${pageText}</p>`)
     $("#preview").addClass('hidden');
     $("#results").removeClass('hidden');
