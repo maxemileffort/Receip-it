@@ -2,6 +2,36 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: rgb(76, 85, 94);
+}
+
+section {
+  background-color: white;
+  padding: 2% 2%;
+  margin: auto 20%;
+}
+
+p, a {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+input {
+  width: 50%;
+}
+
+button {
+  background-color: cornflowerblue;
+  color: white;
+  border: 1px solid white;
+  border-radius: 18px;
+}
+
+button:hover {
+  background-color: goldenrod;
+}
+
 .hidden {
     display: none;
 }
+

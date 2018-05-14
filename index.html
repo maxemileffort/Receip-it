@@ -6,16 +6,24 @@
     <meta name="viewport" content="width=device-width">
     <title>'Ceipt to Sheet</title>
     <link href="index.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
 
 <body>
     <header role="banner"></header>
     <section id="url-input" role="region">
         <form>
-            <label for="image-url"><p>Type in the url and hit preview to see the image we will be analyzing</p>
+            <label for="image-url">
+                <p>Enter an image URL and hit preview to see a preview of your image</p>
+                <p>Note: Currently does not work with local images.</p>
                 <input id="user-input" type="text" name="image-url" placeholder="Enter URL">
             </label>
             <button id="btn-preview">Preview</button>
+            <p>Here's an example image:
+                <a href="https://expressexpense.com/images/sample-gas-receipt.jpg" target="_blank">
+                    Right click this link and select "Copy link address". Then paste it into the URL box 
+                </a>
+            </p>
         </form>
 
     </section>
@@ -28,14 +36,13 @@
     </section>
     <section id="results" class="hidden" role="region">
         <div id="insert-results"></div>
-        <button id="reset">Do over</button>
+        <button id="reset">Start Over</button>
     </section>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous">
         </script>
     <script src="index.js"></script>
-    <script src="text-api-test.js"></script>
 </body>
 
 </html>
