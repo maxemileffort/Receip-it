@@ -1,8 +1,7 @@
 // receipt image: https://expressexpense.com/images/sample-gas-receipt.jpg
 // receipt image 2 : https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrjxKakkzNaFmCyk9UOasjJskivfQI9k5BZ-tRPoknCvp6w7ZTvA
 
-let userUrl = '';
-let parsedResults = '';
+let userUrl, parsedResults, outboundUrl;
 
 function renderPreview (x) {
     $('#insert-preview').html(`<img src='${x}' alt="user's image">`);
@@ -13,10 +12,38 @@ function grabValue () {
     userUrl = $('#user-input').val();
 }
 
+function trimContentType (str){
+    console.log(str);
+    str = str.replace('data:image/jpeg;base64,', '');
+    console.log(str);
+    return str;
+}
+
+function isBase64(str) {
+    try {
+        return btoa(atob(str)) == str;
+    } catch (err) {
+        return false;
+    }
+}
+
+function checkBase64(x) {
+    trimContentType(x);
+    if (isBase64(x) === true){
+        outboundUrl = x;
+        console.log('user input was base64');
+    } else {
+        outboundUrl = btoa(x);
+        console.log('converted input to base64');
+        console.log(outboundUrl);
+    }
+}
+
 $('#btn-preview').on('click', function (event) {
     event.preventDefault();
     $('#url-input').addClass('hidden');
     grabValue();
+    checkBase64(userUrl);
     renderPreview(userUrl);
 })
 
@@ -35,9 +62,7 @@ $('#btn-go').on('click', function (event){
         "requests": [
             {
                 "image": {
-                    "source": {
-                        "imageUri": userUrl
-                    }
+                    "content": outboundUrl
                 },
                 "features": [
                     {
@@ -56,7 +81,8 @@ $('#btn-go').on('click', function (event){
         processData: false,
         success: function (data) {
             if (data.responses[0].hasOwnProperty('error') === true){
-                console.log('error caught')
+                console.log('error caught: ');
+                console.log(data.responses[0]);
                 parsedResults = 'error: '+data.responses[0].error.message;
             } else {
                 console.log('no error')
