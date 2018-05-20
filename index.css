@@ -12,6 +12,11 @@ section {
   margin: auto 20%;
 }
 
+img {
+  max-height: 50%;
+  max-width: 50%;
+}
+
 p, a {
   font-family: 'Ubuntu', sans-serif;
 }

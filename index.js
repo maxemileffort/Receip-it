@@ -1,7 +1,38 @@
 // receipt image: https://expressexpense.com/images/sample-gas-receipt.jpg
 // receipt image 2 : https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrjxKakkzNaFmCyk9UOasjJskivfQI9k5BZ-tRPoknCvp6w7ZTvA
 
-let userUrl, parsedResults, outboundUrl;
+let userInput, parsedResults, request;
+let b64Request = {
+    "requests": [
+        {
+            "image": {
+                "content": ''
+            },
+            "features": [
+                {
+                    "type": "TEXT_DETECTION"
+                }
+            ]
+        }
+    ]
+}
+
+let httpRequest = {
+    "requests": [
+        {
+            "image": {
+                "source": {
+                    "imageUri": ''
+                }
+            },
+            "features": [
+                {
+                    "type": "TEXT_DETECTION",
+                }
+            ]
+        }
+    ]
+}
 
 function renderPreview (x) {
     $('#insert-preview').html(`<img src='${x}' alt="user's image">`);
@@ -9,33 +40,36 @@ function renderPreview (x) {
 }
 
 function grabValue () {
-    userUrl = $('#user-input').val();
+    userInput = $('#user-input').val();
 }
 
 function trimContentType (str){
-    console.log(str);
     str = str.replace('data:image/jpeg;base64,', '');
-    console.log(str);
     return str;
 }
 
 function isBase64(str) {
     try {
-        return btoa(atob(str)) == str;
+        return btoa(atob(str)) === str;
     } catch (err) {
         return false;
     }
 }
 
-function checkBase64(x) {
-    trimContentType(x);
-    if (isBase64(x) === true){
-        outboundUrl = x;
+function checkInputType(x) {
+    if (isBase64(trimContentType(x)) === true){
+        b64Request.requests[0].image.content = trimContentType(x);
+        request = b64Request;
         console.log('user input was base64');
+    } else if (x.startsWith('http') === true){
+        httpRequest.requests[0].image.source.imageUri = x;
+        request = httpRequest;
+        console.log('user input was http');
     } else {
-        outboundUrl = btoa(x);
-        console.log('converted input to base64');
-        console.log(outboundUrl);
+        b64Request.requests[0].image.content = btoa(x);
+        console.log(b64Request.requests[0].image.content);
+        request = b64Request;
+        console.log('user input was converted to base64');
     }
 }
 
@@ -43,8 +77,9 @@ $('#btn-preview').on('click', function (event) {
     event.preventDefault();
     $('#url-input').addClass('hidden');
     grabValue();
-    checkBase64(userUrl);
-    renderPreview(userUrl);
+    checkInputType(userInput);
+    console.log(request);
+    renderPreview(userInput);
 })
 
 $('#btn-back').on('click', function (event){
@@ -57,22 +92,7 @@ $('#btn-back').on('click', function (event){
 $('#btn-go').on('click', function (event){
     event.preventDefault();
     //add functionality that parses text from image here
-    $("#insert-results").html(`<p>Processing...</p>`);
-    let request = {
-        "requests": [
-            {
-                "image": {
-                    "content": outboundUrl
-                },
-                "features": [
-                    {
-                        "type": "TEXT_DETECTION"
-                    }
-                ]
-            }
-        ]
-    }
-
+    $("#insert-results").html('<p>Processing...</p>');
     $.ajax({
         method: 'POST',
         url: 'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBxx4H01kTSUh9qAR6qz7Tb0DUbnOXkeC0',
@@ -91,7 +111,7 @@ $('#btn-go').on('click', function (event){
         }
     })
     .then(function (){
-        $("#insert-results").html(`<img src='${userUrl}' alt="user's image"><p>${parsedResults}</p>`)
+        $("#insert-results").html(`<img src='${userInput}' alt="user's image"><p>${parsedResults}</p>`)
         $("#preview").addClass('hidden');
         $("#results").removeClass('hidden'); 
     })
