@@ -5,8 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>'Ceipt to Sheet</title>
-    <link href="index.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link href="index.css" rel="stylesheet" type="text/css" />
+        
 </head>
 
 <body>
@@ -16,13 +19,16 @@
             <label for="image-url">
                 <p>Enter an image URL and hit preview to see a preview of your image</p>
                 <p>Note: Currently does not work with local images.</p>
-                <input id="user-input" type="text" name="image-url" placeholder="Enter URL">
+                <input id="user-input" type="text" name="image-url" placeholder="Enter URL" required>
+                <!-- <canvas id="imageCanvas"></canvas> -->
             </label>
-            <button id="btn-preview">Preview</button>
+            <button id="btn-preview" class="btn btn-info">Preview</button>
+            <p id="warning-1" class="hidden">Please type in a URL</p>
             <p>Here's an example image:
                 <a href="https://expressexpense.com/images/sample-gas-receipt.jpg" target="_blank">
                     Right click this link and select "Copy link address". Then paste it into the URL box 
                 </a>
+                 <!-- C:\Users\Maxemillian\Pictures\Screenshots\Screenshot-(3).png -->
             </p>
         </form>
 
@@ -30,13 +36,13 @@
     <section id="preview" class="hidden" role="region">
         <div id="insert-preview"></div>
         <div>
-            <button id="btn-back">Back</button>
-            <button id="btn-go">Go!</button>
+            <button id="btn-back" class="btn btn-danger">Back</button>
+            <button id="btn-go" class="btn btn-success">Go!</button>
         </div>
     </section>
     <section id="results" class="hidden" role="region">
         <div id="insert-results"></div>
-        <button id="reset">Start Over</button>
+        <button id="reset" class="btn btn-warning">Start Over</button>
     </section>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

@@ -34,6 +34,8 @@ button {
 
 button:hover {
   background-color: goldenrod;
+  cursor: pointer;
+  box-shadow: black 1px  1px 1px;
 }
 
 #insert-results {
@@ -41,7 +43,23 @@ button:hover {
   flex-direction: row;
 }
 
+#warning-1 {
+  color: red;
+}
+
 .hidden {
     display: none;
 }
 
+.container {
+  max-height: 50%;
+  max-width: 50%;
+}
+
+/* .row {
+  border: 1px black solid;
+} */
+
+.col-xs {
+  border: 1px black solid;
+}
