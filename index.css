@@ -10,6 +10,12 @@ header {
   margin-bottom: -25px;
 }
 
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 section, footer {
   background-color: white;
   padding: 2% 2%;
@@ -24,7 +30,6 @@ img {
 h1 {
   color: white;
   font-family: 'Pacifico', cursive;
-  
 }
 
 p, a {
