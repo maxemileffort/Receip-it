@@ -106,6 +106,8 @@ $('#btn-back').on('click', function (event){
 
 $('#btn-go').on('click', function (event){
     event.preventDefault();
+    $("#preview").addClass('hidden');
+    $("#results").removeClass('hidden')
     //add functionality that parses text from image here
     $("#insert-results").html('<p>Processing...</p>');
     $.ajax({
@@ -143,9 +145,8 @@ $('#btn-go').on('click', function (event){
         $("#insert-results").html(`
         <img src='${userInput}' alt="user's image">
         ${output}
-        `)
-        $("#preview").addClass('hidden');
-        $("#results").removeClass('hidden'); 
+        `);
+         
     })
 })
 

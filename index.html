@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>'Ceipt to Sheet</title>
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu|Pacifico" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link href="index.css" rel="stylesheet" type="text/css" />
@@ -13,15 +13,20 @@
 </head>
 
 <body>
-    <header role="banner"></header>
+    <header role="banner">
+        <section role="region">
+            <div class="header">
+                <h1>'Ceipt to Sheet</h1>
+            </div>
+        </section>
+    </header>
     <section id="url-input" role="region">
         <form>
-            <label for="image-url">
-                <p>Enter an image URL and hit preview to see a preview of your image</p>
-                <p>Note: Currently does not work with local images.</p>
-                <input id="user-input" type="text" name="image-url" placeholder="Enter URL" required>
-                <!-- <canvas id="imageCanvas"></canvas> -->
-            </label>
+            <p>Enter a valid image URL and hit preview to see a preview of your image</p>
+            <p>Note: Currently does not work with local images.</p>
+            <label for="image-url">Image URL:</label>
+            <input id="user-input" type="text" name="image-url" placeholder="Enter URL">
+            <!-- <canvas id="imageCanvas"></canvas> -->
             <button id="btn-preview" class="btn btn-info">Preview</button>
             <p id="warning-1" class="hidden">Please type in a URL</p>
             <p>Here's an example image:
@@ -35,6 +40,7 @@
     </section>
     <section id="preview" class="hidden" role="region">
         <div id="insert-preview"></div>
+        <p>If you are ready to parse the image for text, then hit go!</p>
         <div>
             <button id="btn-back" class="btn btn-danger">Back</button>
             <button id="btn-go" class="btn btn-success">Go!</button>
@@ -44,11 +50,13 @@
         <div id="insert-results"></div>
         <button id="reset" class="btn btn-warning">Start Over</button>
     </section>
+    <footer>Photo by Fabian Grohs on Unsplash</footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous">
         </script>
     <script src="index.js"></script>
 </body>
+
 
 </html>
