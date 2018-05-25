@@ -6,10 +6,25 @@ body {
   background-color: rgb(76, 85, 94);
 }
 
-section {
+header {
+  margin-bottom: -25px;
+}
+
+section, footer {
   background-color: white;
   padding: 2% 2%;
   margin: auto 20%;
+}
+
+img {
+  max-height: 50%;
+  max-width: 50%;
+}
+
+h1 {
+  color: white;
+  font-family: 'Pacifico', cursive;
+  
 }
 
 p, a {
@@ -20,15 +35,22 @@ input {
   width: 50%;
 }
 
+input, label {
+    display:block;
+}
+
 button {
   background-color: cornflowerblue;
   color: white;
   border: 1px solid white;
   border-radius: 18px;
+  margin-top: 5px;
 }
 
 button:hover {
   background-color: goldenrod;
+  cursor: pointer;
+  box-shadow: black 1px  1px 1px;
 }
 
 #insert-results {
@@ -36,7 +58,39 @@ button:hover {
   flex-direction: row;
 }
 
+#warning-1 {
+  margin-top: 10px;
+  color: red;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: 
+    linear-gradient(
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.55)
+    ), 
+    url('fabian-grohs-524350-unsplash.jpg');
+  background-position: center;
+  height: 200px;
+  width: 100%;
+}
+
 .hidden {
     display: none;
 }
 
+.container {
+  max-height: 50%;
+  max-width: 50%;
+}
+
+/* .row {
+  border: 1px black solid;
+} */
+
+.col-xs {
+  border: 1px black solid;
+}
