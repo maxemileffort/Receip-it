@@ -106,7 +106,7 @@ $('#btn-go').on('click', function (event){
         success: function (data) {
             if (data.responses[0].hasOwnProperty('error') === true){
                 parsedResults = 'Error: '+data.responses[0].error.message;
-                output = " " + parsedResults;
+                output = " " + parsedResults + "<p>You can check your URL and make sure it copied correctly or try a new one altogether.</p>";
             } else {
                 parsedResults = data.responses[0].fullTextAnnotation.text;
                 arr = parsedResults.split(' ');
