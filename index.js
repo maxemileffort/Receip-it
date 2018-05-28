@@ -106,7 +106,6 @@ $('#btn-go').on('click', function (event){
         success: function (data) {
             if (data.responses[0].hasOwnProperty('error') === true){
                 parsedResults = 'Error: '+data.responses[0].error.message;
-                renderError(parsedResults)
                 output = " " + parsedResults;
             } else {
                 parsedResults = data.responses[0].fullTextAnnotation.text;
