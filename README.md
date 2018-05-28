@@ -3,9 +3,11 @@ receipt reader and parser
 
 OCR API : https://cloud.google.com/vision/docs/ocr
 
-live link: https://maxemileffort.github.io/ajax-capstone/
+Live link: https://maxemileffort.github.io/Receip-it/
 
-example image : https://expressexpense.com/images/sample-gas-receipt.jpg
+Example image : https://expressexpense.com/images/sample-gas-receipt.jpg
+
+Technologies used : HTML, CSS, Javascript, jQuery
 
 ![step 1](readme-screenshots/Screenshot-(4).png?raw=true "Step 1")
 Landing page
